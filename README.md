@@ -10,7 +10,8 @@ This module contains four utility functions. Each has a subtle bug that has eith
 
 - You may use Claude Code, ChatGPT, web search, or any other tool.
 - Do not change function signatures.
-- Existing tests must still pass. Feel free to add your own if it helps you.
+- The test suite is a starting point, not a guarantee — some bugs do not cause any existing test to fail. Read the code.
+- Feel free to add your own tests if it helps you.
 - When the 20 minutes are up, we'll walk through one of your fixes together. Be ready to explain *why* it was broken, not just how you fixed it.
 
 ## What we're looking for

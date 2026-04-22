@@ -10,13 +10,16 @@ from buggy_utils import paginate, collect_errors, fetch_user_age, is_session_exp
 # ---- paginate ----
 
 def test_paginate_first_page():
-    # NOTE: this test passes even with the bug — pages are 1-indexed
-    # but the buggy version treats them as 0-indexed.
-    assert paginate(["a", "b", "c", "d", "e"], page=1, page_size=2) == ["c", "d"]
+    # Pages are 1-indexed: page 1 returns the first slice.
+    assert paginate(["a", "b", "c", "d", "e"], page=1, page_size=2) == ["a", "b"]
 
 
 def test_paginate_second_page():
-    assert paginate(["a", "b", "c", "d", "e"], page=2, page_size=2) == ["e"]
+    assert paginate(["a", "b", "c", "d", "e"], page=2, page_size=2) == ["c", "d"]
+
+
+def test_paginate_last_partial_page():
+    assert paginate(["a", "b", "c", "d", "e"], page=3, page_size=2) == ["e"]
 
 
 # ---- collect_errors ----
@@ -61,6 +64,7 @@ if __name__ == "__main__":
     tests = [
         test_paginate_first_page,
         test_paginate_second_page,
+        test_paginate_last_partial_page,
         test_collect_errors_single_call,
         test_fetch_user_age_basic,
         test_fetch_user_age_malformed,
